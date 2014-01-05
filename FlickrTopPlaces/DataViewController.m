@@ -39,7 +39,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -72,7 +72,7 @@
                 NSLog(@"JSON parsing error: %@", error);
             } else {
                 self.dataForTableRows = [object valueForKeyPath:[self stringForAccess]];
-                // NSLog(@"%@",self.dataForTableRows);
+                NSLog(@"%@",self.dataForTableRows);
                 [self configureDataSource];
                 [self.tableView reloadData];
             }

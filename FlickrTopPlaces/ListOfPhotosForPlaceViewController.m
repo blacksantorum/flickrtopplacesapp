@@ -19,10 +19,33 @@
 
 @implementation ListOfPhotosForPlaceViewController
 
+-(NSString *)cellTitleForPhoto:(Photo *)photo
+{
+    NSString *cellTitle = [[NSString alloc] init];
+    if ([photo.title length]) {
+        cellTitle = photo.title;
+    } else if ([photo.photoDescription length]) {
+        cellTitle = photo.photoDescription;
+    } else {
+        cellTitle = @"Unknown";
+    }
+    return cellTitle;
+}
+
+-(NSString *)cellSubtitleForPhoto:(Photo *)photo
+{
+    NSString *cellSubtitle = [[NSString alloc] init];
+    if ([photo.title length]) {
+        cellSubtitle = photo.photoDescription;
+    } else {
+        cellSubtitle = @"";
+    }
+    return cellSubtitle;
+}
+
 -(NSURL *)urlForCall
 {
-    return [FlickrFetcher URLforPhotosInPlace:@"rEBdGBNVV787224" maxResults:50];
-    // return [FlickrFetcher URLforPhotosInPlace:self.place.placeID maxResults:50];
+    return [FlickrFetcher URLforPhotosInPlace:self.place.placeID maxResults:50];
 }
 
 -(NSString *)stringForAccess
@@ -51,10 +74,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Photo *photo = self.photos[indexPath.row];
-    NSLog(@"%@",photo);
     
-    cell.textLabel.text = photo.title;
-    cell.detailTextLabel.text = photo.photoDescription;
+    cell.textLabel.text = [self cellTitleForPhoto:photo];
+    cell.detailTextLabel.text = [self cellSubtitleForPhoto:photo];
+    
     return cell;
 }
 

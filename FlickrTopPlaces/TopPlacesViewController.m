@@ -82,6 +82,7 @@
     NSString *country = self.countries[indexPath.section];
     NSArray *placesForCountry = [self placesInCountry:country];
     Place *place = placesForCountry[indexPath.row];
+    
     cell.textLabel.text = place.name;
     cell.detailTextLabel.text = place.state;
     return cell;
@@ -103,7 +104,10 @@
         NSString *country = [self.countries objectAtIndex:indexPath.section];
         NSArray *placesInCountry = [self placesInCountry:country];
         
-        controller.place = placesInCountry[indexPath.row];
+        Place *place = placesInCountry[indexPath.row];
+        
+        controller.title  = place.name;
+        controller.place = place;
     }
 }
 
