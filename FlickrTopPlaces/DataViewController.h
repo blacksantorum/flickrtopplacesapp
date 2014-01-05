@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DataViewController : UIViewController
+@interface DataViewController : UITableViewController
+
+@property (strong,nonatomic) NSArray *dataForTableRows;
+
+-(NSURL *)urlForCall;
+-(NSString *)stringForAccess;
+-(void)getDataFromURL;
+-(void)configureDataSource;
 
 @end
